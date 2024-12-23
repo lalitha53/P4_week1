@@ -1,91 +1,177 @@
 import React, { useState } from 'react';
+import './Userdashboard.css';
 
-function UserDashboard() {
-  const [user, setUser] = useState({
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    address: '123 Main St, City, Country',
-  });
+const Userdashboard = () => {
+  // State to track the visibility of the top bar
+  const [isBannerVisible, setBannerVisible] = useState(true);
 
-  const [orders, setOrders] = useState([
-    { id: 1, product: 'Fashion Jacket', date: '2024-12-15', status: 'Shipped' },
-    { id: 2, product: 'Denim Jeans', date: '2024-12-10', status: 'Delivered' },
-    { id: 3, product: 'Stylish Sneakers', date: '2024-12-05', status: 'Pending' },
-  ]);
-
-  const [editMode, setEditMode] = useState(false);
-  const [newAddress, setNewAddress] = useState(user.address);
-
-  const handleAddressChange = (e) => {
-    setNewAddress(e.target.value);
-  };
-
-  const handleSaveAddress = () => {
-    setUser({ ...user, address: newAddress });
-    setEditMode(false);
+  // Function to close the banner
+  const closeBanner = () => {
+    setBannerVisible(false);
   };
 
   return (
-    <>
-    <div className="user-dashboard-container">
-      <h2>User Dashboard</h2>
-
-      <div className="profile-section">
-        <h3>Profile Information</h3>
-        <p><strong>Name:</strong> {user.name}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <div>
-          <strong>Address:</strong>
-          {editMode ? (
-            <div>
-              <input
-                type="text"
-                value={newAddress}
-                onChange={handleAddressChange}
-              />
-              <button onClick={handleSaveAddress}>Save Address</button>
-            </div>
-          ) : (
-            <p>{user.address}</p>
-          )}
+    <div>
+      {/* Conditionally render the top bar based on isBannerVisible */}
+      {isBannerVisible && (
+        <div className="top-bar">
+          <span>FREE SHIPPING OVER Rs.1500/-</span>
+          <button className="close-btn" onClick={closeBanner}>×</button>
         </div>
-        <button onClick={() => setEditMode(!editMode)}>
-          {editMode ? 'Cancel' : 'Edit Address'}
-        </button>
+      )}
+
+      {/* Navbar Section */}
+      <div className="navbar">
+        <div className="logo">
+          <a href="/">
+            <img src="/only_only_logo-png.png" alt="StyleU Logo" />
+          </a>
+          StyleU
+        </div>
+
+        <div className="left-links">
+          <a href="#">Shop</a>
+          <a href="#">New In</a>
+          <a href="#">Tops</a>
+          <a href="#">Bottoms</a>
+          <a href="#">Sale</a>
+        </div>
+
+        <div className="right-icons">
+          <a href="#"><i className="fas fa-shopping-bag"></i></a>
+          <a href="#"><i className="fas fa-heart"></i></a> {/* Wishlist Icon */}
+          <a href="#"><i className="fas fa-shopping-cart"></i></a> {/* Cart Icon */}
+          <a href="#">Log In</a>
+        </div>
       </div>
 
-      <div className="orders-section">
-        <h3>Your Orders</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Product</th>
-              <th>Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.product}</td>
-                <td>{order.date}</td>
-                <td>{order.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Hero Section */}
+      <div className="hero">
+        <img
+          alt="A woman in a black dress standing in a field of tall grass under a clear blue sky"
+          src="https://storage.googleapis.com/a1aa/image/6jufl7fMC7oKtUFuvEhcQbTBcyCt9tT8XIDMa5lep1fyiv1PB.jpg"
+        />
+        <div className="text">
+          <h1>SUMMER COLLECTION</h1>
+          <button>Shop Now</button>
+        </div>
       </div>
 
-      <div className="wishlist-section">
-        <h3>Your Wishlist</h3>
-        {/* Wishlist items can be added here */}
-        <p>No items in wishlist yet.</p>
+      {/* Hero Section */}
+      <div className="hero">
+        <img
+          alt="A woman in a black dress standing in a field of tall grass under a clear blue sky"
+          src="/winter_collection.png"
+        />
+        <div className="text">
+          <h1>WINTER COLLECTION</h1>
+          <button>Shop Now</button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="hero">
+        <img
+          alt="A woman in a black dress standing in a field of tall grass under a clear blue sky"
+          src="/Spring_collection.png"
+        />
+        <div className="text">
+          <h1>SPRING COLLECTION</h1>
+          <button>Shop Now</button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="hero">
+        <img
+          alt="A woman in a black dress standing in a field of tall grass under a clear blue sky"
+          src="/rainy_collection.png"
+        />
+        <div className="text">
+          <h1>RAINY COLLECTION</h1>
+          <button>Shop Now</button>
+        </div>
+      </div>
+
+      <div className="subtext">EVERYDAY APPAREL FOR EVERYONE</div>
+
+      {/* New In Section */}
+      <div className="new-in-section">
+        <h2>NEW IN</h2>
+        <div className="new-in-items">
+          {/* Add appropriate content here */}
+        </div>
+      </div>
+
+      {/* Shop by Category */}
+      <div className="category-section">
+        <h2>SHOP BY CATEGORY</h2>
+        <div className="categories">
+          <div className="category">
+            <img alt="Tops Category" src="/Tops_image.png" />
+            <p>TOPS</p>
+          </div>
+          <div className="category">
+            <img alt="Bottoms Category" src="/men_cargo_bottoms.png" />
+            <p>BOTTOMS</p>
+          </div>
+          <div className="category">
+            <img alt="Dresses Category" src="/Women_dress2.png" />
+            <p>DRESSES</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Newsletter Section */}
+      <div className="newsletter">
+        <h2>Stay Up to Date</h2>
+        <p>Subscribe to our newsletter and get the latest updates and offers directly to your inbox.</p>
+        <input type="email" placeholder="Enter your email address" />
+        <div>
+          <input type="checkbox" /> I agree to the <a href="#">terms and conditions</a>
+        </div>
+        <button>Subscribe</button>
+      </div>
+
+      {/* Footer Section */}
+      <div className="footer">
+        <div>
+          <h3>Quick Links</h3>
+          <a href="#">Shop</a>
+          <a href="#">New In</a>
+          <a href="#">Tops</a>
+          <a href="#">Bottoms</a>
+          <a href="#">Dresses</a>
+          <a href="#">Sale</a>
+        </div>
+        <div>
+          <h3>Customer Service</h3>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div>
+          <h3>Follow Us</h3>
+          <a href="#"><i className="fab fa-facebook"></i> Facebook</a>
+          <a href="#"><i className="fab fa-twitter"></i> Twitter</a>
+          <a href="#"><i className="fab fa-instagram"></i> Instagram</a>
+        </div>
+      </div>
+
+      <div className="payment-methods">
+        <h3>We Accept</h3>
+        <img
+          alt="Visa, MasterCard, PayPal"
+          src="https://storage.googleapis.com/a1aa/image/yqn5L3Fge_i-K9pPqGo0gTSqKwm5pcgLtbvxdpH2Bzqibcnc6l.jpg"
+        />
+      </div>
+
+      <div className="copyright">
+        <p>&copy; 2024 StyleU Apparel. All Rights Reserved.</p>
       </div>
     </div>
-    </>
   );
-}
+};
 
-export default UserDashboard;
+export default Userdashboard;

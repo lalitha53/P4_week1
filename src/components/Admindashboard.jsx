@@ -1,122 +1,119 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './Admindashboard.css';
 
-function AdminDashboard() {
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Fashion Jacket', price: 50, stock: 20 },
-    { id: 2, name: 'Denim Jeans', price: 30, stock: 50 },
-    { id: 3, name: 'Stylish Sneakers', price: 70, stock: 15 },
-  ]);
-
-  const [orders, setOrders] = useState([
-    { id: 1, product: 'Fashion Jacket', customer: 'John Doe', status: 'Shipped' },
-    { id: 2, product: 'Denim Jeans', customer: 'Jane Smith', status: 'Pending' },
-    { id: 3, product: 'Stylish Sneakers', customer: 'Sam Wilson', status: 'Shipped' },
-  ]);
-
-  const [users, setUsers] = useState([
-    { id: 1, name: 'John Doe', email: 'johndoe@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'janesmith@example.com' },
-    { id: 3, name: 'Sam Wilson', email: 'samwilson@example.com' },
-  ]);
-
-  const handleAddProduct = () => {
-    const newProduct = { id: products.length + 1, name: 'New Product', price: 60, stock: 10 };
-    setProducts([...products, newProduct]);
-  };
-
-  const handleEditProduct = (id) => {
-    const updatedProducts = products.map((product) =>
-      product.id === id ? { ...product, name: 'Updated Product' } : product
-    );
-    setProducts(updatedProducts);
-  };
-
-  const handleDeleteProduct = (id) => {
-    const filteredProducts = products.filter((product) => product.id !== id);
-    setProducts(filteredProducts);
-  };
-
+const AdminDashboard = () => {
   return (
-    <>
-    <div className="admin-dashboard-container">
-      <h2>Admin Dashboard</h2>
-
-      <div className="section">
-        <h3>Product Management</h3>
-        <button onClick={handleAddProduct}>Add New Product</button>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.stock}</td>
-                <td>
-                  <button onClick={() => handleEditProduct(product.id)}>Edit</button>
-                  <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="admin-dashboard">
+      <div className="sidebar">
+        <h2>
+          <img src="/only_only_logo-png.png" alt="StyleU Logo" />
+          StyleU
+        </h2>
+        <ul>
+          <li><i className="fas fa-tachometer-alt"></i>Dashboard</li>
+          <li><i className="fas fa-users"></i>User Manage</li>
+          <li><i className="fas fa-list"></i>Category Manage</li>
+          <li><i className="fas fa-tags"></i>Brand Manage</li>
+          <li><i className="fas fa-tag"></i>Tag Manage</li>
+          <li><i className="fas fa-box"></i>Product Manage</li>
+          <li><i className="fas fa-shopping-cart"></i>Order Manage</li>
+          <li><i className="fas fa-image"></i>Banner Manage</li>
+          <li><i className="fas fa-user"></i>Dashboard Users</li>
+          <li><i className="fas fa-gift"></i>Offer Manage</li>
+          <li><i className="fas fa-cogs"></i>Others Manage</li>
+          <li><i className="fas fa-cog"></i>Settings</li>
+        </ul>
       </div>
 
-      <div className="section">
-        <h3>Order Management</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Product</th>
-              <th>Customer</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.product}</td>
-                <td>{order.customer}</td>
-                <td>{order.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <div className="main-content">
+        <div className="header">
+          <div className="user-info">
+            <img src="/user_logo.png" alt="User Avatar" />
+            <span>Admin</span>
+          </div>
+          <div className="earnings">
+            <div>
+              <span>Last Month</span>
+              <span>₹ 0</span>
+            </div>
+            <div>
+              <span>Total Earnings</span>
+              <span>₹ 2503724.25</span>
+            </div>
+          </div>
+        </div>
 
-      <div className="section">
-        <h3>User Management</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>User ID</th>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="dashboard">
+          <h1>Dashboard</h1>
+          <div className="stats">
+            <div className="stat" style={{ backgroundColor: '#ff6b6b' }}>
+              <div className="info">
+                <h3>Total Users</h3>
+                <p>117</p>
+              </div>
+              <i className="fas fa-users"></i>
+            </div>
+            <div className="stat" style={{ backgroundColor: '#4ecdc4' }}>
+              <div className="info">
+                <h3>Total Products</h3>
+                <p>20</p>
+              </div>
+              <i className="fas fa-cube"></i>
+            </div>
+            <div className="stat" style={{ backgroundColor: '#5f27cd' }}>
+              <div className="info">
+                <h3>Total Orders</h3>
+                <p>230</p>
+              </div>
+              <i className="fas fa-clipboard-list"></i>
+            </div>
+          </div>
+
+          <div className="sales-summary">
+            <h2>Sales Summary</h2>
+            <div className="summary">
+              <div className="info">
+                <h3>₹ 2503713</h3>
+                <p>Current Month Earnings</p>
+                <h3>402</h3>
+                <p>Current Month Sales</p>
+                <button>View all orders</button>
+              </div>
+              <div className="chart">
+                <img src="/Statistics.png" alt="Sales Chart" />
+              </div>
+            </div>
+          </div>
+
+          <div className="orders">
+            <div className="top-orders">
+              <h2>Todays Top Orders</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order Id</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Payments</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Add rows dynamically */}
+                </tbody>
+              </table>
+            </div>
+            <div className="order-stats">
+              <h2>Order Stats</h2>
+              <div className="chart">
+                <img src="/Pie_chart.png" alt="Order Stats Pie Chart" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    </>
   );
-}
+};
 
 export default AdminDashboard;
